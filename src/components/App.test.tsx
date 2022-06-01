@@ -10,10 +10,8 @@ describe("App", () => {
   it("shouldn't contain any items nor be in a loading state by default", () => {
     const shallowRenderer = ShallowRenderer.createRenderer();
     const app: any = shallowRenderer.render(<App dataApi={instance(mock(DataApi))}/>)
-
-    const mainSection = app.find(MainSection);
-
-    expect(mainSection.props().isLoading).toBe(false);
-    expect(mainSection.props().items).toHaveLength(0);
+    const result = shallowRenderer.getRenderOutput();
+    
+    expect(result.props.children).toEqual(<MainSection />);
   })
 })
